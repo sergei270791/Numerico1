@@ -50,4 +50,5 @@ print("La solucion es")
 
 tabla = pd.concat([iteracion, xl, xu, xr, ea], axis=1)  # unimos en columnas
 print(tabla)
-print("Aguilar Palomino Dan 20180453c")
+print("Alumno:Calle Cuadros Sergei")
+print("Codigo: 20184099J")
