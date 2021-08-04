@@ -1,88 +1,37 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Feb 14 10:10:38 2019
-
-@author: Minghua Chen
-"""
-# Iteración sucesiva sobre relajación
+import math
 import numpy as np
-A=[[10.0,3.0,1.0], [2.0,-10.0,3.0], [1.0,3.0,10.0]]
-b=[[14.0,-5.0,14.0]]
+import sympy as sp
+from sympy import cos,sin
+import matplotlib.pyplot as plt
+from scipy.fftpack import fft
+a=list()
+b=list()
+x=np.array([1.,1.2,1.5,1.7,2.])
+y=np.array([5,5.8,6.5,7.5,8.4])
+n= len(y)
+w=2.1*np.pi
+d=fft(y)/n
+print(d)
+def f(x,n=n,d=d):
+    M=math.floor((n+1)/2)
+    a=2*d.real
+    b=-2*d.imag
+    a[0]/=2
+    a[M]/=2
+    y=0
+    for k in range(0,M+1):
+        y+= a[k] * np.cos(w * k * x) + b[k] * np.sin(w * k * x)
+    wx=sp.symbols('wx')
+    m=sp.Lambda(wx,sum(a[k] * cos(k * wx) + b[k] * sin(k * wx) for k in range(0,M+1)))
+    print(m)
+    return y
 
-def get_base(A):
-    base=list(np.zeros((len(A),len(A))))
-    D=[]
-    for i in base:
-        D.append(list(i))
-    return D
-
-def get_U(A):
-    D=get_base(A)
-    i=0
-    while i<len(A):
-        k=i+1
-        while k<len(A):
-            D[i][k]=-A[i][k]
-            k=k+1
-        i=i+1
-    return np.mat(D)
-
-def get_D(A):
-    D=get_base(A)
-    for i in A:
-        D[A.index(i)][A.index(i)]=A[A.index(i)][A.index(i)]
-    return np.mat(D)
-
-def get_L(A,D,U):
-    L=D-A-U
-    return L
-
-def get_B(D,L,U,w):
-    B=(D-w*L).I*((1-w)*D+w*U)
-    return B
-
-def get_f(D,L,w,b):
-    f=w*(D-w*L).I*(np.mat(b).T)
-    return f
-
-def matrix_to_list(x):
-    d=[]
-    ans=[]
-    for i in x:
-        d.append(i.tolist())
-    for i in d:
-        ans.append(i[0])
-    return ans
-
-
-def roll(B,f,x0):
-    x=np.mat(x0).T
-    y=B*x+f
-    return matrix_to_list(y.T)
-
-def main(A,b,x0,e,w):
-    U=get_U(A)
-    D=get_D(A)
-    L=get_L(A,D,U)
-    B=get_B(D,L,U,w)
-    f=get_f(D,L,w,b)
-    n=0
-    ans=[]
-    ans.append(x1)
-    ans.append(x0)
-    ans1=[]
-    ans1.append(x1[0])
-    ans1.append(x0[0])
-    while abs(ans[-1][0][1]-ans[-2][0][1])>e:
-        n=n+1
-        x0=roll(B,f,x0)
-        ans.append(x0)
-    for i in ans:
-        ans1.append(i[0])
-    return ans1,len(ans1)-2
-
-x1=[[1,1,2]]
-x0= roll(A,b,x1)
-e=0.00001
-w=1
-print(main(A,b,x0,e,w))
+tx= np.linspace(x[0],x[-1],1000)
+ty=f(tx)
+plt.plot(tx,ty,'o',label = 'Transformada')
+plt.plot(x,y,'o',color='red',label = u"Puntos")
+plt.legend()
+plt.xlabel('Ascensión (grados)')
+plt.ylabel('Declinación (minutos)')
+plt.title('Posición del asteroide Pallas')
+plt.show()
