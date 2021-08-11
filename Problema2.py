@@ -4,7 +4,7 @@ import numpy as np
 from math import e
 
 x = sp.symbols('x')  # declaramos que x es un simbolo
-func = e*(x/2)*(x*3+6*x*2+24*x+48)/48-0.1
+func = (e*(x/2)*(x*3+6*x*2+24*x+48)/48)-0.005
 xl=13
 xu=14
 es=1e-5

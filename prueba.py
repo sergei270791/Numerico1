@@ -1,37 +1,54 @@
-import math
-import numpy as np
 import sympy as sp
-from sympy import cos,sin
-import matplotlib.pyplot as plt
-from scipy.fftpack import fft
-a=list()
-b=list()
-x=np.array([1.,1.2,1.5,1.7,2.])
-y=np.array([5,5.8,6.5,7.5,8.4])
-n= len(y)
-w=2.1*np.pi
-d=fft(y)/n
-print(d)
-def f(x,n=n,d=d):
-    M=math.floor((n+1)/2)
-    a=2*d.real
-    b=-2*d.imag
-    a[0]/=2
-    a[M]/=2
-    y=0
-    for k in range(0,M+1):
-        y+= a[k] * np.cos(w * k * x) + b[k] * np.sin(w * k * x)
-    wx=sp.symbols('wx')
-    m=sp.Lambda(wx,sum(a[k] * cos(k * wx) + b[k] * sin(k * wx) for k in range(0,M+1)))
-    print(m)
-    return y
+import pandas as pd
+import numpy as np
+from math import e
 
-tx= np.linspace(x[0],x[-1],1000)
-ty=f(tx)
-plt.plot(tx,ty,'o',label = 'Transformada')
-plt.plot(x,y,'o',color='red',label = u"Puntos")
-plt.legend()
-plt.xlabel('Ascensión (grados)')
-plt.ylabel('Declinación (minutos)')
-plt.title('Posición del asteroide Pallas')
-plt.show()
+x = sp.symbols('x')  # declaramos que x es un simbolo
+func = (e*(x/2)*(x*3+6*x*2+24*x+48)/48)-0.005
+xl=21
+xu=22
+es=1e-5
+itera = 0
+m_itera = np.array([])  # matriz q almacena valores de itera
+m_xl = np.array([])  # matriz q alamacena valores de xl
+m_xu = np.array([])  # matriz q alamcena valores de xu
+xr = 0
+m_xr = np.array([])  # matriz q almacena valroes de xr
+ea = 100
+m_ea = np.array([])  # matriz q alamcena valore s de ea
+fl = func.evalf(subs={x: xl})  # reamplazmos x por xl y evaluamos la funcion
+# incio del bucle
+while ea > es:
+    xanterior = xr
+    xr = (xl + xu) / 2
+    fr = func.evalf(subs={x: xr})
+    itera = itera + 1
+    if xr != 0:
+        ea = abs((xr - xanterior) / xr) * 100
+    test = fl * fr
+    # agregamos valores a las matrices vacias
+    m_itera = np.append(m_itera, itera)
+    m_xl = np.append(m_xl, xl)
+    m_xu = np.append(m_xu, xu)
+    m_xr = np.append(m_xr, xr)
+    m_ea = np.append(m_ea, ea)
+
+    if test < 0:
+        xu = xr
+    elif test > 0:
+        xl = xr
+        fl = fr
+    else:
+        ea = 0
+    # representamos datos en pandas
+iteracion = pd.Series(m_itera, name="Iteracion")
+xl = pd.Series(m_xl, name="xl")
+xu = pd.Series(m_xu, name="xu")
+xr = pd.Series(m_xr, name="xr")
+ea = pd.Series(m_ea, name="ea%")
+print("La solucion es")
+
+tabla = pd.concat([iteracion, xl, xu, xr, ea], axis=1)  # unimos en columnas
+print(tabla)
+print("Alumno:Calle Cuadros Sergei")
+print("Codigo: 20184099J")

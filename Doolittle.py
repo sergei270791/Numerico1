@@ -1,8 +1,8 @@
 import numpy as np
-def CroutL1(a):
+def DoolittleL1(a):
     m, n = a.shape
     if (m !=n ):
-        print("CroutL1 cannot be used.")#Ensure that the number of equations is equal to the number of unknowns
+        print("Doolittle cannot be used.")#Ensure that the number of equations is equal to the number of unknowns
     else:
         l = np.zeros((n,n))
         u = np.zeros((n,n))
@@ -11,41 +11,17 @@ def CroutL1(a):
         for i in range(n):
             l[i][i] = 1
         for k in range(n):
-            for j in range(k, n):
-                for r in range(k): s1 += l[k][r] * u[r][j]
-                u[k][j] = a[k][j] - s1
+            for i in range(k+1):
+                for r in range(i): s1 += l[i][r] * u[r][k]
+                u[i][k] = a[i][k] - s1
                 s1 = 0                #Initialize s1 after each summation=0
-            for i in range(k+1, n):
+            for i in range(k, n):
                 for r in range(k): s2 += l[i][r] * u[r][k]
                 l[i][k] = (a[i][k] - s2) / u[k][k]
                 s2 = 0                #Initialize s2 after each summation=0
         print(u)
         print(l)
-
-def CroutU1(a):
-    m, n = a.shape
-    if (m !=n ):
-        print("CroutU1 cannot be used.")#Ensure that the number of equations is equal to the number of unknowns
-    else:
-        l = np.zeros((n,n))
-        u = np.zeros((n,n))
-        s1 = 0
-        s2 = 0
-        for i in range(n):
-            u[i][i] = 1
-        for k in range(0, n):
-            for i in range(k, n):
-                for r in range(k): s1 += l[i][r] * u[r][k]
-                l[i][k] = a[i][k] - s1
-                s1 = 0                #Initialize s1 after each summation=0
-            for j in range(k+1, n):
-                for r in range(k): s2 += l[k][r] * u[r][j]
-                u[k][j] = (a[k][j] - s2) / l[k][k]
-                s2 = 0                #Initialize s2 after each summation=0
-        print(u)
-        print(l)
         solution(u,l)
-
 
 def solution(u,l):
     m, n = a.shape  
@@ -71,7 +47,5 @@ def solution(u,l):
 
 a = np.array([[2,4,2,6],[4,9,6,15],[2,6,9,18],[6,15,18,40]])
 b = np.array([9,23,22,47])
-print("caso 1:")
-CroutL1(a)
-print("caso 2:")
-CroutU1(a)
+print("Respuesta:")
+DoolittleL1(a)
