@@ -23,8 +23,9 @@ def biseccion2(f, a, b, tol=1.0e-6):
     return x
 
 def func(x):
-    return x*log(x)-1
+  x=x**4+5*x**3+77*x**2+153*x+90
+  return x
 # Metodo de Biseccion
 
-sol = biseccion2(func,1,2,1.0e-5)
+sol = biseccion2(func,-4,-2,1.0e-5)
 print("Solucion aproximada por Biseccion: ",sol)
