@@ -7,7 +7,7 @@ def Cholesky(a):
     l = np.zeros((n,n))
     s1 = 0
     for j in range(n):
-      for k in range(j): s1+=l[j][k]
+      for k in range(j): s1+=l[j][k]**2
       l[j][j]=np.sqrt(a[j][j]-s1)
       s1=0
       for i in range(j+1,n):
@@ -44,7 +44,7 @@ def solution(u,l):
         print("x" + str(i + 1) + " = ", x[i])
     print("x" " = ", x)
 
-a = np.array([[4,-1,1],[-1,4.25,2.75],[1,2.75,3.5]],float)
+a = np.array([[4,-1,-1],[-1,4,1],[-1,1,4]],float)
 b = np.array([9,23,22])
 print("Respuesta:")
 Cholesky(a)
