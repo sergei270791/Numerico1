@@ -2,7 +2,7 @@ import numpy as np
 def Cholesky(a):
   m, n = a.shape
   if (m !=n ):
-    print("Doolittle cannot be used.")#Ensure that the number of equations is equal to the number of unknowns
+    print("Cholesky cannot be used.")#Ensure that the number of equations is equal to the number of unknowns
   else:
     l = np.zeros((n,n))
     s1 = 0

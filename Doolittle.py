@@ -19,7 +19,9 @@ def DoolittleL1(a):
                 for r in range(k): s2 += l[i][r] * u[r][k]
                 l[i][k] = (a[i][k] - s2) / u[k][k]
                 s2 = 0                #Initialize s2 after each summation=0
+        print('La matriz U es:')
         print(u)
+        print('La matriz L es:')
         print(l)
         solution(u,l)
 
@@ -45,7 +47,7 @@ def solution(u,l):
         print("x" + str(i + 1) + " = ", x[i])
     print("x" " = ", x)
 
-a = np.array([[2,4,2,6],[4,9,6,15],[2,6,9,18],[6,15,18,40]])
-b = np.array([9,23,22,47])
+a = np.array([[2,2,1],[4,7,2],[2,11,5]])
+b = np.array([9,23,22])
 print("Respuesta:")
 DoolittleL1(a)

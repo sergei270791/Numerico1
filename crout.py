@@ -22,7 +22,8 @@ def CroutL1(a):
         print(u)
         print(l)
 
-def CroutU1(a):
+"""Este es el que el profe mas considera"""
+def CroutU1(a): 
     m, n = a.shape
     if (m !=n ):
         print("CroutU1 cannot be used.")#Ensure that the number of equations is equal to the number of unknowns
@@ -69,8 +70,8 @@ def solution(u,l):
         print("x" + str(i + 1) + " = ", x[i])
     print("x" " = ", x)
 
-a = np.array([[2,4,2,6],[4,9,6,15],[2,6,9,18],[6,15,18,40]])
-b = np.array([9,23,22,47])
+a = np.array([[2,2,1],[4,7,2],[2,11,5]])
+b = np.array([9,23,22])
 print("caso 1:")
 CroutL1(a)
 print("caso 2:")
