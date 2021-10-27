@@ -16,7 +16,7 @@ def matrizE(A):
 				E[i][j]=-A[i][j]
 	return E
 
-def iterativo(M,c,tol=1E-3):
+def iterativo(M,c,tol=1E-6):
   x=np.zeros_like(c)
   aux=x
   print("El x en la iteracion 0  es: ",x)

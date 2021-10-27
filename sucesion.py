@@ -1,6 +1,6 @@
-def succession(n,ini=0.501):
+def succession(n):
   if n==0:
-    u=ini
+    u=0.501
   else:
     aux1=succession(n-1)
     u=3.9*aux1*(1-aux1)
@@ -9,13 +9,6 @@ def succession(n,ini=0.501):
 
 
 for n in range(0,21):
-  u=succession(n,0.5)
+  u=succession(n)
   print("El termino ",n," de la sucesión en python es:",u)
 
-for n in range(0,21):
-  u=succession(n,ini=0.501)
-  print("El termino ",n," de la sucesión en python es:",u)
-
-for n in range(0,21):
-  u=succession(n,ini=0.51)
-  print("El termino ",n," de la sucesión en python es:",u)
