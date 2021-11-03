@@ -9,7 +9,8 @@ def verificar(A):
 
 def matrizE(A):
 	n=len(A)
-	E=np.zeros(n,n)
+	E=np.zeros_like(A)
+	E=np.zeros_like(A)
 	for i in range(n):
 		for j in range(n):
 			if i>j:
@@ -52,15 +53,14 @@ def Jacobi(A,b):
   n=len(A)
   I=np.identity(n)
   D=np.diag(np.diag(A))
-  print(D)
   invD=np.linalg.inv(D)
   J=I-np.dot(invD,A)
   c=np.dot(invD,b)
   iterativo(J,c)
 
 
-A = np.array([[10,-1,2,0],[-1,11,-1,3],[2,-1,10,-1],[0,3,-1,8]],float)
-b = np.array([6,25,-11,15])
+A = np.array([[5,6,4],[12,10,11],[15,10,12]],float)
+b = np.array([110,227,250])
 b=np.transpose(b)
 
-Jacobi(A,b)
+

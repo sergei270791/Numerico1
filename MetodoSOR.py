@@ -27,19 +27,23 @@ def SOR(A,b,w,tol):
   n=len(A)
   aux=np.zeros((n, 1))
   x=np.transpose(np.array([1.,1.,1.],float))
-  while np.linalg.norm(x-aux, np.inf)/np.linalg.norm(x, np.inf)>tol:
-    print(x)
+  i=0
+  while np.linalg.norm(x-aux, np.inf)/np.linalg.norm(x, np.inf)>tol :
+    print('La solucion en la iteracion ',i,' es:',x)
     aux=x
     x=np.dot(get_G(A,w),x)+w*np.dot(np.linalg.inv(get_D(A)-w*get_E(A)),b)
-  print("La respuesta es: ")
+    i+=1
+    if i==100:
+      return 'La solucion NO converge'
+  print("La respuesta final es: ")
   return x
 
-A = np.array([[4, 3, 0],
-            [3, 4, -1],
-            [0, -1, 4]],float)
 
-b= np.transpose(np.array([24.,30.,-24.]))
+A = np.array([[1, 1, 1],
+            [1, -1, 0],
+            [1, 0, -2]],float)
 
-print(SOR(A,b,1.25,1E-9))
+b= np.transpose(np.array([80,-1,22]))
+print(np.round(SOR(A,b,0.75,1E-9),4))
 
 

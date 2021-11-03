@@ -30,13 +30,9 @@ def GAUSSJORDAN(AB):
     AB=np.round(AB, decimals = 4)
     return AB
 
-A = np.array([[2., 1., 0.,4.],
-            [-4., -2.0, 3.0,-7.0],
-            [4., 1.0,-2 , 8],
-           [0 ,-3, -12, -1]], dtype=float)
-B = np.array([[2],
-              [-9],
-              [2],
-              [2]], dtype=float)
-AB = np.concatenate((A, B), axis=1)
+A = np.array([[5,6,4],[12,10,11],[15,10,12]],float)
+b = np.array([[110],[227],[250]])
+
+
+AB = np.concatenate((A, b), axis=1)
 print(GAUSSJORDAN(AB))
