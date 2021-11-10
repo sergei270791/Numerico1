@@ -72,6 +72,7 @@ def solution(u,l):
 
 a = np.array([[2,2,1],[4,7,2],[2,11,5]])
 b = np.array([9,23,22])
+b=np.transpose(b)
 print("caso 1:")
 CroutL1(a)
 print("caso 2:")
