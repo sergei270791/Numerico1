@@ -9,10 +9,10 @@ def gradienteConjugado(A,B,tol):
     k=1
     while math.sqrt(d)>tol*np.linalg.norm(B) and k<=100:
         if k == 1: 
-          p=r
+            p=r
         else:
-          b=d/auxD2
-          p=r+b*p
+            b=d/auxD2
+            p=r+b*p
         w=np.dot(A,p)
         a=d/(np.dot(np.transpose(p),w))
         x=x+a*p
@@ -25,35 +25,35 @@ def gradienteConjugado(A,B,tol):
         k+=1
 
 def matrizHilbert(n):
-  A=np.zeros((n, n))
-  B=np.zeros((n,1))
-  for i in range(0,n):
-    aux=0
-    for j in range(0,n):
-      A[i,j]=1/(3+i+j)
-      aux+=A[i,j]
-    B[i,0]=(1/3)*aux
-  return A,B
+    A=np.zeros((n, n))
+    B=np.zeros((n,1))
+    for i in range(0,n):
+        aux=0
+        for j in range(0,n):
+            A[i,j]=1/(3+i+j)
+            aux+=A[i,j]
+            B[i,0]=(1/3)*aux
+    return A,B
 
 def matriz(n):
-  A=np.zeros((n, n))
-  for i in range(n):
-    for j in range(n):
-      if j==i:
-        A[i,j]=2*i
-      elif j==i+1 or j==i-1 :
-        A[i,j]=-1
-  return A
+    A=np.zeros((n, n))
+    for i in range(n):
+        for j in range(n):
+            if j==i:
+                A[i,j]=2*i
+            elif j==i+1 or j==i-1 :
+                [i,j]=-1
+    return A
 
 def matriz2(n):
-  A=np.zeros((n, n))
-  for i in range(n):
-    for j in range(n):
-      if j==0:
-        A[i,0]=4
-      elif j==i+1 or j==i-1 or j==i+5 or j==i-5 :
-        A[i,j]=-1
-  return A
+    A=np.zeros((n, n))
+    for i in range(n):
+        for j in range(n):
+            if j==0:
+                A[i,0]=4
+            elif j==i+1 or j==i-1 or j==i+5 or j==i-5 :
+                A[i,j]=-1
+    return A
 
 #tol = np.finfo(float).eps
 tol =1.0e-5
