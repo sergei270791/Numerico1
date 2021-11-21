@@ -26,7 +26,7 @@ def get_G(A,w):
 def SOR(A,b,w,tol):
   n=len(A)
   aux=np.zeros((n, 1))
-  x=np.transpose(np.array([1.,1.,1.],float))
+  x=np.transpose(np.array([1.,1.],float))
   i=0
   while np.linalg.norm(x-aux, np.inf)/np.linalg.norm(x, np.inf)>tol :
     print('La solucion en la iteracion ',i,' es:',x)
@@ -39,11 +39,9 @@ def SOR(A,b,w,tol):
   return x
 
 
-A = np.array([[1, 1, 1],
-            [1, -1, 0],
-            [1, 0, -2]],float)
+A = np.array([[5,-3],[1, 1]],float)
 
-b= np.transpose(np.array([80,-1,22]))
-print(np.round(SOR(A,b,0.75,1E-9),4))
-
+b= np.transpose(np.array([32,16]))
+#print(np.round(SOR(A,b,1.25,1E-6),4))
+print(SOR(A,b,1.25,1E-6))
 

@@ -2,8 +2,8 @@ import math
 import numpy as np
 
 def RDescensoRapido(A,B):
-    eps = 1E-6
-    x=np.transpose([0.,0.,0.])
+    eps = 1E-5
+    x = np.array(np.transpose([-5.05, 80.05, 0]))
     r=B
     i=0
     while np.linalg.norm(r)>=eps*np.linalg.norm(B):
@@ -17,9 +17,9 @@ def RDescensoRapido(A,B):
             print('El metodo no converge')
             return
 
-A = np.array([[1, 1, 1],
-            [1, -1, 0],
-            [1, 0, -2]],float)
+A = np.array([[0, 0, 1],
+            [64, 8, 1],
+            [256, 16, 1]],float)
 
-b= np.transpose(np.array([80,-1,22]))
+b= np.transpose(np.array([0, 320, 0]))
 RDescensoRapido(A,b)

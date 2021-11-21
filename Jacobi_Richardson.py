@@ -2,7 +2,7 @@ import numpy as np
 
 
 def iterativo(M,c,tol=1E-6):
-  x=np.zeros_like(c)
+  x=np.transpose([0.3,1.5,6.375])
   aux=x
   print("El x en la iteracion 0  es: ",x)
   x=np.dot(M,x)+c
@@ -27,8 +27,8 @@ def JacobiRichardson(A,b):
   iterativo(J,c)
 
 
-A = np.array([[1,-2],[0,1]],float)
-b = np.array([0,20])
+A = np.array([[10,1,2],[4,6,-2],[-2,3,8]],float)
+b = np.array([3,9,51])
 b=np.transpose(b)
 JacobiRichardson(A,b)
 
