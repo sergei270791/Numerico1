@@ -5,19 +5,19 @@ def Householder(A):
     n=len(A)
     Q=np.identity(n)
     for k in range(n):
-        a=A[:,0]
+        a=np.matrix(A[:,0])
         e1=np.zeros_like(a)
-        e1[0]=1
+        e1[0,0]=1
         v=a+np.sign(A[0,0])*np.linalg.norm(a)*e1
-        v=np.matrix(v).T
-        print(v)
         aux2=np.dot(v.T,v)
         H=np.identity(n-k)-(2/aux2[0,0])*np.dot(v,v.T)
         aux=np.dot(H,A)
-        A=aux[1:,1:]
+        A=np.matrix(aux[1:,1:])
         H_modificado=transformarH(H,n,k)
         Q=np.dot(Q,H_modificado)
         R=np.dot(H_modificado,R)
+    Q=np.round(Q, decimals=6) 
+    R=np.round(R, decimals=6) 
     return Q,R
 
 
@@ -34,11 +34,13 @@ def transformarH(H,n,k):
                 H_modificado[i,j]=H[i-k,j-k]
     return H_modificado
 
-A=np.array([
-    [2, -2, 18],
-    [2,1,0],
-    [1,2,0]],float)
-b=np.array([11,25,0],float)
+A=np.matrix([
+    [2, -1, -1,0,0],
+    [-1,3,0,-2,0],
+    [-1,0,4,2,1],
+    [0,-2,2,8,3],
+    [0,0,1,3,9]],float)
+b=np.matrix([11,25,0],float)
 b=np.transpose(b)
 
 Q,R=Householder(A)
@@ -46,6 +48,3 @@ print('La matriz Q es:')
 print(Q)
 print('La matriz R es:')
 print(R)
-x=np.dot(np.linalg.inv(A),b)
-print("\n La solución x es:\n")
-print(x)
