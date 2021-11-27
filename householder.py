@@ -1,5 +1,11 @@
 import numpy as np
 
+def determinante(R):
+    det=1
+    for i in range(len(R)):
+        det*=R[i,i]
+    return det
+
 def Householder(A):
     R=A
     n=len(A)
@@ -16,8 +22,8 @@ def Householder(A):
         H_modificado=transformarH(H,n,k)
         Q=np.dot(Q,H_modificado)
         R=np.dot(H_modificado,R)
-    Q=np.round(Q, decimals=6) 
-    R=np.round(R, decimals=6) 
+    Q=np.round(Q, decimals=9) 
+    R=np.round(R, decimals=9) 
     return Q,R
 
 
@@ -35,12 +41,12 @@ def transformarH(H,n,k):
     return H_modificado
 
 A=np.matrix([
-    [2, -1, -1,0,0],
-    [-1,3,0,-2,0],
-    [-1,0,4,2,1],
-    [0,-2,2,8,3],
-    [0,0,1,3,9]],float)
-b=np.matrix([11,25,0],float)
+    [1,1,1,1,1],
+    [2,3,4,5,6],
+    [3,7,13,21,31],
+    [1,2,4,8,16],
+    [2,6,16,40,96]],float)
+b=np.matrix([2,4,6,8,13],float)
 b=np.transpose(b)
 
 Q,R=Householder(A)
@@ -48,3 +54,11 @@ print('La matriz Q es:')
 print(Q)
 print('La matriz R es:')
 print(R)
+
+print('El determinante de la matriz es: ')
+det = determinante(R)
+print(-det)
+
+solucion = np.dot(np.dot(np.linalg.inv(R),np.transpose(Q)),b)
+solucion=np.transpose(solucion)
+print("solucion: ",np.round(solucion,decimals=5))

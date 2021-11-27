@@ -1,5 +1,10 @@
 import numpy as np
 
+def determinante(R):
+    det=1
+    for i in range(len(R)):
+        det*=R[i,i]
+    return det
 
 def QRschmithclasico(A):
     Q=np.zeros(np.shape(A),float)
@@ -13,17 +18,19 @@ def QRschmithclasico(A):
         Q[:, k]=Q[:, k]/np.linalg.norm(Q[:, k])
     R =np.dot(np.transpose(Q),A)
     R=np.array(R,float)
-    print("La matriz Q es:\n",np.round(Q,decimals=4),"\nLa matriz R es:\n",np.round(R,decimals=4))
+    print("La matriz Q es:\n",np.round(Q,decimals=6),"\nLa matriz R es:\n",np.round(R,decimals=6))
     return Q,R
 
 
 A=np.array([
-    [2, -1, -1,0,0],
-    [-1,3,0,-2,0],
-    [-1,0,4,2,1],
-    [0,-2,2,8,3],
-    [0,0,1,3,9]],float)
+    [300,0,150],
+    [0,1000,-150],
+    [1,-1,-1]],float)
+
 Q,R=QRschmithclasico(A)
-b=np.array([-1,3,1,1,2],float)
+""" print('El determinante de la matriz es: ')
+det = determinante(R)
+print(det) """
+b=np.array([7.5,11.5,0],float)
 solucion = np.dot(np.dot(np.linalg.inv(R),np.transpose(Q)),b)
-print("solucion: ",np.round(solucion,decimals=4))
+print("solucion: ",np.round(solucion,decimals=5))
