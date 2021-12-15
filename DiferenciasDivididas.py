@@ -2,8 +2,9 @@ import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
 
-xi = np.array([0, 200, 400, 650, 1100, 1900, 2300])
-fi = np.array([5.5, 5.04, 4.36, 3.45, 2.37, 1.32, 0.71])
+
+xi = np.array([3,1,5,6])
+fi = np.array([1,-3,2,4])
 
 titulo = ['i   ','xi  ','fi  ']
 n = len(xi)

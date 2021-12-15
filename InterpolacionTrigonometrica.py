@@ -60,7 +60,7 @@ for j in range(1,n+1):
     b[j] = -2*C[j+n].imag 
     print('Parte real a({0:d}) = {1:.5f}'.format(j,float(2*C[j+n].real)))
     print('Parte imaginaria b({0:d}) = {1:.5f}'.format(j,float(2*C[j+n].imag)))
-   # print('C:{:.2f}'.format(complex(C[j])))
+    # print('C:{:.2f}'.format(complex(C[j])))
     #print('C({0:.6f}) = {1:.6f}'.format(j,C[j]))
 
 #actualizando a[0]
