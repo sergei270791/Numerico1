@@ -17,8 +17,8 @@ def matrizE(A):
 				E[i][j]=-A[i][j]
 	return E
 
-def iterativo(M,c,tol=1E-6):
-  x=np.zeros_like(c)
+def iterativo(M,c,tol=1E-3):
+  x=[0,0,0,0]
   aux=x
   print("El x en la iteracion 0  es: ",x)
   x=np.dot(M,x)+c
@@ -39,6 +39,11 @@ def GaussSeidel(A,b):
   F=aux-A
   inv=np.linalg.inv(aux)
   G=np.dot(inv,F)
+  print("LA MATRIZ DE GAUSS-SEIDEL ES: ")
+  print(G)
+  autovalores,autovectores=np.linalg.eig(G)
+  print('Los autovalores son: ')
+  print(autovalores)
   c=np.dot(inv,b)
   iterativo(G,c)
 
@@ -47,6 +52,11 @@ def Richardson(A,b):
   n=len(A)
   I=np.identity(n)
   M=I-A
+  print("LA MATRIZ DE JACOBI ES: ")
+  print(M)
+  autovalores,autovectores=np.linalg.eig(M)
+  print('Los autovalores son: ')
+  print(autovalores)
   iterativo(M,b)
 
 def Jacobi(A,b):
@@ -55,12 +65,17 @@ def Jacobi(A,b):
   D=np.diag(np.diag(A))
   invD=np.linalg.inv(D)
   J=I-np.dot(invD,A)
+  print("LA MATRIZ DE JACOBI ES: ")
+  print(J)
+  autovalores,autovectores=np.linalg.eig(J)
+  print('Los autovalores son: ')
+  print(autovalores)
   c=np.dot(invD,b)
   iterativo(J,c)
 
 
-A = np.array([[5,6,4],[12,10,11],[15,10,12]],float)
-b = np.array([110,227,250])
+A = np.array([[10,10,60,20],[10,100,20,40],[100,30,20,30],[5,10,5,30]],float)
+b = np.array([140,190,105,54])
 b=np.transpose(b)
 
-
+Jacobi(A,b)

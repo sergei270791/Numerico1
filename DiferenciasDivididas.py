@@ -20,7 +20,6 @@ diagonal = n-1
 j = 3
 while (j < m):
     titulo.append('F['+str(j-2)+']')
-
     i = 0
     paso = j-2
     while (i < diagonal):

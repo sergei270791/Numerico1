@@ -50,11 +50,10 @@ np.set_printoptions(precision=4, suppress=True)
 
 # Input matrix
 A=np.array([
-    [1,1,1,1,1],
-    [2,3,4,5,6],
-    [3,7,13,21,31],
-    [1,2,4,8,16],
-    [2,6,16,40,96]],float)
+    [4, 1, 1, 1],
+    [1, 4, 1, 1],
+    [1 ,1 ,4 ,1],
+    [1 ,1 ,1 ,4]],float)
 
 # Print input matrix
 #print(A)
@@ -71,8 +70,8 @@ print("-----------------------------------")
 # Print upper triangular matrix R
 print(" R :\n")
 print(R)
-
+""" 
 b=np.matrix([2,4,6,8,13],float)
 b=np.transpose(b)
 solucion = np.dot(np.dot(np.linalg.inv(R),np.transpose(Q)),b)
-print("solucion: ",np.round(solucion,decimals=5))
+print("solucion: ",np.round(solucion,decimals=5)) """

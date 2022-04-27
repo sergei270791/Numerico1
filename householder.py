@@ -40,25 +40,28 @@ def transformarH(H,n,k):
                 H_modificado[i,j]=H[i-k,j-k]
     return H_modificado
 
+
+
 A=np.matrix([
-    [1,1,1,1,1],
-    [2,3,4,5,6],
-    [3,7,13,21,31],
-    [1,2,4,8,16],
-    [2,6,16,40,96]],float)
+    [4, 1, 1, 1],
+    [1, 4, 1, 1],
+    [1 ,1 ,4 ,1],
+    [1 ,1 ,1 ,4]],float)
 b=np.matrix([2,4,6,8,13],float)
 b=np.transpose(b)
 
 Q,R=Householder(A)
+Q=-Q
+R=-R
 print('La matriz Q es:')
 print(Q)
 print('La matriz R es:')
 print(R)
 
-print('El determinante de la matriz es: ')
+""" print('El determinante de la matriz es: ')
 det = determinante(R)
-print(-det)
+print(det)
 
 solucion = np.dot(np.dot(np.linalg.inv(R),np.transpose(Q)),b)
 solucion=np.transpose(solucion)
-print("solucion: ",np.round(solucion,decimals=5))
+print("solucion: ",np.round(solucion,decimals=5)) """

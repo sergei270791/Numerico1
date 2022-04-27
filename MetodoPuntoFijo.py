@@ -1,4 +1,3 @@
-from math import log
 import numpy as np
 
 def PuntoFijo(f, x0, tol=1.0e-6):
@@ -7,6 +6,7 @@ def PuntoFijo(f, x0, tol=1.0e-6):
       raise ValueError("La cota de error debe ser un número positivo")
     i=0
     while abs(f(x0)-x0) >= tol and i<max_iter:
+      print('La solucion para la iteracion '+str(i)+' es: '+str(x0))
       x0 = f(x0)
       i+=1
     if abs(f(x0)-x0) >= tol:
@@ -16,7 +16,7 @@ def PuntoFijo(f, x0, tol=1.0e-6):
       print("El numero de iteraciones es: ",i)
 
 def func(x):
-    return x+log(x)
+    return (3*x+1)**(1/3)
 # Metodo de Punto Fijo
 
-PuntoFijo(func,0.4,1.0e-4)
+PuntoFijo(func,1.5,1.0e-6)

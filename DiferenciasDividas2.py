@@ -10,7 +10,7 @@ def diferenciasDividas(xi,fi):
     ki = np.arange(n)
     tabla = np.concatenate(([ki],[xi],[fi]),axis=0)
     tabla = np.transpose(tabla)
-    dfinita = np.zeros(shape=(n,n),dtype=float)
+    dfinita = np.zeros(shape=(n,n-1),dtype=float) #Si falla cambiar n-1 por n
     tabla = np.concatenate((tabla,dfinita), axis=1)
     [n,m] = np.shape(tabla)
     diagonal = n-1
