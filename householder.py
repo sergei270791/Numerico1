@@ -8,9 +8,14 @@ def determinante(R):
 
 def Householder(A):
     R=A
-    n=len(A)
+    n,m=np.shape(A)
     Q=np.identity(n)
-    for k in range(n):
+    aux=0
+    if n>=m:
+        aux=m
+    else:
+        aux=n
+    for k in range(aux):
         a=np.matrix(A[:,0])
         e1=np.zeros_like(a)
         e1[0,0]=1
@@ -43,16 +48,13 @@ def transformarH(H,n,k):
 
 
 A=np.matrix([
-    [4, 1, 1, 1],
-    [1, 4, 1, 1],
-    [1 ,1 ,4 ,1],
-    [1 ,1 ,1 ,4]],float)
+    [2, 1,1],
+    [1, 2,1],
+    [1 ,1,1 ]],float)
 b=np.matrix([2,4,6,8,13],float)
 b=np.transpose(b)
 
 Q,R=Householder(A)
-Q=-Q
-R=-R
 print('La matriz Q es:')
 print(Q)
 print('La matriz R es:')
