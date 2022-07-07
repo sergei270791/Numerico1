@@ -1,41 +1,28 @@
-from math import sqrt
+from math import sin, sqrt,log
 import numpy as np
 
 def biseccion(f, a, b, tol=1.0e-6):
-    """Argumentos:
-    f - Función, debe ser tal que f(a) f(b) &lt; 0
-    a - Extremo inferior del intervalo
-    b - Extremo superior del intervalo
-    tol (opcional) - Cota para el error absoluto de la x
-    Devuelve
-    --------
-    x - Raíz de f en [a, b]
-    """
     if a > b:
-        raise ValueError("Intervalo mal definido")
-    if f(a) * f(b) >= 0.0:
-        raise ValueError("La función debe cambiar de signo en el intervalo")
+      raise ValueError("Intervalo mal definido")
+    if f(a) * f(b) >= 0:
+      raise ValueError("La función debe cambiar de signo en el intervalo")
     if tol <= 0:
-        raise ValueError("La cota de error debe ser un número positivo")
-    x = (a + b) / 2.0
-    i=1
-    while True:
-        if b - a < tol:
-            print("El número de iteraciones es: ",i)
-            return x
-        # Utilizamos la función signo para evitar errores de precisión
-        elif np.sign(f(a)) * np.sign(f(x)) > 0:
-            a = x
-        else:
-            b = x
-        x = (a + b) / 2.0
-        i+=1
+      raise ValueError("La cota de error debe ser un número positivo")
+    i=c=0
+    while abs(a-b)>=tol:
+      i+=1
+      c=(a+b)/2
+      
+      if f(c)==0:
+        a=b=0
+      elif f(b)*f(c)>=0:
+        b=c
+      else:
+        a=c
+    print('El numero de iteraciones es: ',i)
+    return c
 
-def func(x):
-    return 10*x - sqrt(7)
+f= lambda x: x*sin(x)-1
 # Metodo de Biseccion
-
-sol = biseccion(func,0.2,0.3,1.0e-5)
+sol = biseccion(f,1,2,1.0e-3)
 print("Solucion aproximada por Biseccion: ",sol)
-
-
