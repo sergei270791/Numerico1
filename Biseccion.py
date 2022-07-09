@@ -12,13 +12,13 @@ def biseccion(f, a, b, tol=1.0e-6):
     while abs(a-b)>=tol:
       i+=1
       c=(a+b)/2
-      
       if f(c)==0:
         a=b=0
       elif f(b)*f(c)>=0:
         b=c
       else:
         a=c
+      print('Intervalo para la iteracion ',i,' es: [',a,',',b,']')
     print('El numero de iteraciones es: ',i)
     return c
 

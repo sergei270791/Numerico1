@@ -14,6 +14,8 @@ def secante(f, a, b, tol=1.0e-6):
       x0=x
       x = x0-f(x0)*(x0-aux)/(f(x0)-f(aux))
       i+=1
+      print('Para la iteracion ',i)
+      print('x=',x,'  f(x)=',f(x))
   print("El número de iteraciones es: ",i)
   return x
 

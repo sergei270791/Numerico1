@@ -17,9 +17,10 @@ def ReglaFalsa(f, a, b, tol=1.0e-6):
       else: 
         a=x
       x = a-f(a)*(a-b)/(f(a)-f(b))
+      print('Intervalo para la iteracion ',i,' es: [',a,',',b,']')
       i+=1
     print("Solucion aproximada por Regla falsa: ",x)
-    print("El numero de iteraciones es: ",i)
+    print("El numero de iteraciones es: ",i-1)
 
 
 def ReglaFalsaModificada(f, a, b, tol=1.0e-6):
@@ -37,13 +38,14 @@ def ReglaFalsaModificada(f, a, b, tol=1.0e-6):
         fa=f(a)
       else: 
         fa=0.5*f(a)
-      k=k+1
       b=x
-      x=x = b-f(b)*(b-a)/(f(b)-fa)
+      x = b-f(b)*(b-a)/(f(b)-fa)
+      print('Intervalo para la iteracion ',k,' es: [',a,',',b,']')
+      k=k+1
     print("Solucion aproximada por Regla falsa modificada: ",x)
-    print("El numero de iteraciones es: ",k)
+    print("El numero de iteraciones es: ",k-1)
 
-f= lambda x: x**3-2*x**2+10*x-20
-print("Para el intervalo [1,5]:")
-ReglaFalsa(f,1,5,1.0e-6)
-ReglaFalsaModificada(f,1,5,1.0e-6)
+f= lambda x: x*sin(x)-1
+print("Para el intervalo [1,2]:")
+ReglaFalsa(f,1,2,1.0e-6)
+ReglaFalsaModificada(f,1,2,1.0e-6)
