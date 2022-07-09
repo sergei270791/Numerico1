@@ -1,3 +1,4 @@
+from math import sin
 import numpy as np
 
 def PuntoFijo(f, x0, tol=1.0e-6):
@@ -15,8 +16,7 @@ def PuntoFijo(f, x0, tol=1.0e-6):
       print("Solucion aproximada por Punto Fijo: ",x0)
       print("El numero de iteraciones es: ",i)
 
-def func(x):
-    return (3*x+1)**(1/3)
-# Metodo de Punto Fijo
 
-PuntoFijo(func,1.5,1.0e-6)
+func =lambda x: 4+sin(2*x)/3
+# Metodo de Punto Fijo
+PuntoFijo(func,0,1.0e-5)
