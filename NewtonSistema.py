@@ -7,7 +7,7 @@ def MetodoNewton(J,f,x,tol=1.0e-6):
     x=x-np.transpose(np.dot(np.linalg.inv(J(x)),f(x)))
     k+=1
     x=x.ravel().tolist()
-    print("La solucion para la iteracion numero",k,"es: ");
+    print("La solucion para la iteracion numero",k,"es: ")
     print(x)
   print("El metodo termino con "+str(k)+" iteraciones")
   print('La respuesta es: ')
