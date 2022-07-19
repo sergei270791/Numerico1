@@ -4,7 +4,7 @@ def MetodoNewton(J,f,x,tol=1.0e-6):
   k=0
   x=x
   while np.linalg.norm(f(x)) > tol:
-    x=x-np.transpose(np.dot(np.linalg.inv(J(x)),f(x)))
+    x=x-np.transpose(np.linalg.solve(J(x),f(x)))
     k+=1
     x=x.ravel().tolist()
     print("La solucion para la iteracion numero",k,"es: ")
