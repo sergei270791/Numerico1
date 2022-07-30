@@ -20,7 +20,7 @@ def CirculoGershgorin(A):
         rango=[di-sum,di+sum]
         rangofinal.extend(rango)
         print('El intervalo para la fila '+str(i+1)+' es: '+ str(rango))
-        circle = plt.Circle((di, 0 ), sum ,fill = False )
+        circle = plt.Circle((di.real, di.imag ), sum ,fill = False )
         axes.add_artist( circle )
     rangoespectral=[]
     maxi=max(np.abs(rangofinal))
@@ -50,10 +50,7 @@ def CirculoGershgorin(A):
     plt.show() 
 
 
-A=np.array([[1, 0, -1, 1],
-            [2, 2, -1, 1],
-            [0, 1, 3, -2],
-            [1, 0, 1, 4]])
+A=np.array([[-1+1j, 0, 1/4],
+            [1/4, 1, 1/4],
+            [1, 1, 3]])
 CirculoGershgorin(A)
-
-
