@@ -37,10 +37,10 @@ def givens_rotation(A):
 
 
 # Set print options (optional)
-np.set_printoptions(precision=4, suppress=True)
+np.set_printoptions(precision=8, suppress=True)
 
 # Input matrix
-A=np.matrix([
+A=np.array([
     [2, 1,1],
     [1, 2,1],
     [1 ,1,1 ]],float)
@@ -60,7 +60,7 @@ print("-----------------------------------")
 print(" R :\n")
 print(R)
 """ 
-b=np.matrix([2,4,6,8,13],float)
+b=np.array([2,4,6,8,13],float)
 b=np.transpose(b)
 solucion = np.dot(np.dot(np.linalg.inv(R),np.transpose(Q)),b)
 print("solucion: ",np.round(solucion,decimals=5)) """

@@ -1,5 +1,5 @@
 import numpy as np
-np.set_printoptions(suppress=True)
+np.set_printoptions(precision=8,suppress=True)
 def QRschmith(A):
     m,n= np.shape(A)
     Q=np.zeros((m,n),float)

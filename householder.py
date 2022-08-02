@@ -1,5 +1,8 @@
 import numpy as np
 
+# Set print options (optional)
+np.set_printoptions(precision=8, suppress=True)
+
 def determinante(R):
     det=1
     for i in range(len(R)):
@@ -16,19 +19,17 @@ def Householder(A):
     else:
         aux=n
     for k in range(aux):
-        a=np.matrix(A[:,0])
-        e1=np.zeros_like(a)
+        a=np.array(A[:,0])
+        e1=np.zeros((1,n-k))
         e1[0,0]=1
         v=a+np.sign(A[0,0])*np.linalg.norm(a)*e1
-        aux2=np.dot(v.T,v)
-        H=np.identity(n-k)-(2/aux2[0,0])*np.dot(v,v.T)
-        aux=np.dot(H,A)
-        A=np.matrix(aux[1:,1:])
+        aux2=np.dot(v,v.T)
+        H=np.identity(n-k)-(2/aux2[0,0])*np.dot(v.T,v)
+        aux3=np.dot(H,A)
+        A=np.array(aux3[1:,1:])
         H_modificado=transformarH(H,n,k)
         Q=np.dot(Q,H_modificado)
         R=np.dot(H_modificado,R)
-    Q=np.round(Q, decimals=9) 
-    R=np.round(R, decimals=9) 
     return Q,R
 
 
@@ -45,13 +46,11 @@ def transformarH(H,n,k):
                 H_modificado[i,j]=H[i-k,j-k]
     return H_modificado
 
-
-
-A=np.matrix([
+A=np.array([
     [2, 1,1],
     [1, 2,1],
     [1 ,1,1 ]],float)
-b=np.matrix([2,4,6,8,13],float)
+b=np.array([2,4,6,8,13],float)
 b=np.transpose(b)
 
 Q,R=Householder(A)

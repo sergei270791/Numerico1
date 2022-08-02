@@ -2,19 +2,44 @@ import numpy as np
 
 np.set_printoptions(suppress=True)
 
-def QRschmithclasico(A):
-    Q=np.zeros(np.shape(A),float)
-    m,n= np.shape(A)
-    for k in range(0,n):
-        suma = 0
-        if(k!=0):
-            for i in range (0, k):
-                suma=suma+(np.dot(np.transpose(A[:,k]),Q[:,i])/pow(np.linalg.norm(Q[:,i]),2))*Q[:,i]
-        Q[:,k]=A[:,k]-suma
-        Q[:, k]=Q[:, k]/np.linalg.norm(Q[:, k])
-    R =np.dot(np.transpose(Q),A)
-    R=np.array(R,float)
+def Householder(A):
+    R=A
+    n,m=np.shape(A)
+    Q=np.identity(n)
+    aux=0
+    if n>=m:
+        aux=m
+    else:
+        aux=n
+    for k in range(aux):
+        a=np.array(A[:,0])
+        e1=np.zeros((1,n-k))
+        e1[0,0]=1
+        v=a+np.sign(A[0,0])*np.linalg.norm(a)*e1
+        aux2=np.dot(v,v.T)
+        H=np.identity(n-k)-(2/aux2[0,0])*np.dot(v.T,v)
+        aux3=np.dot(H,A)
+        A=np.array(aux3[1:,1:])
+        H_modificado=transformarH(H,n,k)
+        Q=np.dot(Q,H_modificado)
+        R=np.dot(H_modificado,R)
+    Q=np.round(Q, decimals=9) 
+    R=np.round(R, decimals=9) 
     return Q,R
+
+
+def transformarH(H,n,k):
+    H_modificado=np.zeros((n,n))
+    for i in range(n):
+        for j in range(n):
+            if i<k or j<k:
+                if i==j:
+                    H_modificado[i][i]=1
+                else:
+                    H_modificado[i][j]=0
+            else:
+                H_modificado[i,j]=H[i-k,j-k]
+    return H_modificado
 
 def es_matriz_diagonal(m):
     n=len(m)
@@ -29,7 +54,7 @@ def QRFrancis(A):
     while not es_matriz_diagonal(A):
         print('Matriz A en la iteracion '+str(i)+' es:')
         print(A)
-        Q,R=QRschmithclasico(A)
+        Q,R=Householder(A)
         A=np.dot(R,Q)
         A=np.round(A,decimals=5)
         i+=1
