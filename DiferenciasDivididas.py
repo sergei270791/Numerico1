@@ -2,6 +2,7 @@ import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
 
+np.set_printoptions(precision = 9,suppress=True)
 
 xi = np.array([3,1,5,6])
 fi = np.array([1,-3,2,4])
@@ -43,16 +44,13 @@ for j in range(1,n,1):
     polinomio = polinomio + termino*factor
 
 polisimple = polinomio.expand()
-
 px = sym.lambdify(x,polisimple)
-
 muestras = 101
 a = np.min(xi)
 b = np.max(xi)
 pxi = np.linspace(a,b,muestras)
 pfi = px(pxi)
 
-np.set_printoptions(precision = 4)
 print('Tabla Diferencia Dividida')
 print([titulo])
 print(tabla)

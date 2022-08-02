@@ -41,6 +41,8 @@ for i in range(muestras):
     pfi.append(func(pxi[i]))
 plt.plot(xi,fi,'o', label = 'Puntos')
 plt.plot(pxi,pfi, label = 'Polinomio')
+plt.axhline(0, color="black")
+plt.axvline(0, color="black")
 plt.legend()
 plt.xlabel('xi')
 plt.ylabel('fi')

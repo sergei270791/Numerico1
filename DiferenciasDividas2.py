@@ -1,7 +1,7 @@
 import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
-np.set_printoptions(precision = 7,suppress=True)
+np.set_printoptions(precision = 9,suppress=True)
 
 
 def diferenciasDividas(xi,fi):    
@@ -57,7 +57,6 @@ def diferenciasDividas(xi,fi):
     print(polinomio)
     print('polinomio simplificado: ' )
     print(polisimple)
-
     plt.plot(xi,fi,'o', label = 'Puntos')
     plt.plot(pxi,pfi, label = 'Polinomio')
     plt.legend()

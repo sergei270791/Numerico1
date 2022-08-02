@@ -6,10 +6,8 @@ import matplotlib.pyplot as plt
 def Matrixmonde(n,puntos):
     A=np.zeros((n, n))
     for i in range(n):
-        lista=list()
         for j in range(n):
-            lista.append(puntos[j][0]**i)
-        A[:, i] = np.transpose(np.array(lista))
+            A[j,i]=(puntos[j][0]**i)
     return A
 
 
@@ -42,6 +40,8 @@ for i in range(muestras):
     pfi.append(m(pxi[i]))
 plt.plot(xi,fi,'o', label = 'Puntos')
 plt.plot(pxi,pfi, label = 'Polinomio')
+plt.axhline(0, color="black")
+plt.axvline(0, color="black")
 plt.legend()
 plt.xlabel('xi')
 plt.ylabel('fi')
