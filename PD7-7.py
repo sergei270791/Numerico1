@@ -6,10 +6,11 @@ import matplotlib.pyplot as plt
 from scipy.fftpack import fft
 a=list()
 b=list()
-x=range(0,331,30)
+dt=30
+x=range(0,331,dt)
 y=np.array([408,89, -66 ,10, 338, 807, 1238, 1511, 1583, 1462, 1183, 804])
-n= len(y)
-w=2*np.pi/360
+n= len(x)
+w=2*np.pi/(n*dt)
 d=fft(y)/n
 print(d)
 def f(x,n=n,d=d):

@@ -54,7 +54,7 @@ for j in range(-n,n+1):
     print('Término j = {0:d} es C({1:d}) = ({2.real:.5f} + {2.imag:.5f}i)'.format(j+n,j,complex(C[j+n])))
     
     #print('C(j) = {0:.6f}'.format(float(C[j+n-1])))
-   
+
 for j in range(1,n+1):
     a[j] = 2*C[j+n].real
     b[j] = -2*C[j+n].imag 
