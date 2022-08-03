@@ -1,8 +1,7 @@
 import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
-np.set_printoptions(precision = 8,suppress=True)
-
+np.set_printoptions(precision = 9,suppress=True)
 
 def HermiteInterpolacion(xi,fi,f1i):    
     
