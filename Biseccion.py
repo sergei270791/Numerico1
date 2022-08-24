@@ -1,5 +1,4 @@
 from math import sin, sqrt,log
-import numpy as np
 
 def biseccion(f, a, b, tol=1.0e-6):
     if a > b:
